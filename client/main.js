@@ -2,6 +2,7 @@ const complimentBtn = document.getElementById("complimentButton");
 const fortuneBtn = document.getElementById("fortuneBtn");
 const goalBtn = document.querySelector("#goalBtn");
 const allGoalsBtn =document.querySelector("#allGoals");
+const updateBtn = document.querySelector("#updateBtn")
 const yourName = document.querySelector("#name");
 const yourGoal = document.querySelector("#goal");
 const date = document.querySelector("#date");
@@ -68,6 +69,9 @@ const getGoals = (event) => {
     clearDisplay()
     axios.get(`${baseURL}/goals`).then((res) => {
         console.log(res.data)
+        for(let i = 0; i < res.data.length; i++) {
+            createGoalsCard(res.data[i]);
+        }
 
     }).catch(err => console.log(err))
 }
@@ -108,7 +112,7 @@ const getCuteDogs = () => {
   });
 };
 
-const deleteGoal = (id) =>
+const deleteGoal = (id) => 
   axios
     .delete(`http://localhost:4000/api/goals/${id}`)
     .then((res) => {
@@ -119,12 +123,17 @@ const deleteGoal = (id) =>
     .catch((err) => console.log(err));
 
 
-//     const deleteGoal = (id) =>
-//   axios
-//     .delete(`${baseURL}/goals/${id}`)
-//     .then(({ data: goals }) => displayGoals(goals) )
-//     .catch((err) => console.log(err));
+    // const changeDate = (id, date) => {
+    //     let newDate = {
+    //         date: date.value
+    //     }
+    //     axios.put(`${baseURL}/goals/${id}`, {newDate}).then((res) => {
+    //         console.log(res.data)
 
+    //     }).catch(err => console.log(err))
+
+    // }
+    
 
     
 
@@ -140,6 +149,8 @@ fortuneBtn.addEventListener("click", getFortune);
 goalBtn.addEventListener("click", addGoal);
 allGoalsBtn.addEventListener("click", getGoals)
 
+// updateBtn.addEventListener("click", changeDate)
+
 
 
 function displayGoals(arr) {
@@ -152,6 +163,3 @@ function displayGoals(arr) {
 
 
 
-// form.addEventListener('submit', displayHandler)
-
-//getAllGoals()

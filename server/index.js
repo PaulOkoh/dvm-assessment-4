@@ -7,7 +7,7 @@ app.use(cors());
 
 app.use(express.json());
 
-const { getCompliment, getFortune, addGoal, deleteGoal, getGoals } = require("./controller");
+const { getCompliment, getFortune, addGoal, deleteGoal, getGoals, /*changeDate*/ } = require("./controller");
 
 app.get("/api/compliment", getCompliment);
 
@@ -19,8 +19,7 @@ app.get("/api/goals", getGoals)
 
 app.post("/api/goals", addGoal);
 
-// app.put();
-
+// app.put("/api/goals/:id", changeDate);
 
 app.delete("/api/goals/:id", deleteGoal);
 

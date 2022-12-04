@@ -53,10 +53,19 @@ module.exports = {
         let goalIndex = goals.findIndex((element) => element.id === +id)
         goals.splice(goalIndex,1)
         res.status(200).send(goals);
+    },
+
+    changeDate: (req, res) => {
+        let { id } = req.params;
+        let { newDate } = req.body;
+        let goalIndex = goals.findIndex((element) => element.id === +id);
+        let goal = goals[goalIndex];
+        goal[date] = newDate
     }
 
     
    
 
 }
+
 
