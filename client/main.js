@@ -12,25 +12,34 @@ const dogDisplay = document.querySelector(".dogDisplay");
 
 let baseURL = "http://localhost:4000/api"
 
-const createGoalsCard = (char) => {
+const goalsCallback = ({ data: goals }) => displayGoals(goals)
+const errCallback = err => console.log(err)
+
+const createGoalsCard = (goal) => {
     let goalCard = document.createElement("div")
-    let dltBtn = document.createElement("button")
-    dltBtn.textContent = "Delete Goal"
-  goalCard.innerHTML = `<h3>My name is ${char.name}</h3>
-    <h3>My goal is ${char.goal}</h3>
-    <h3>My start date is ${char.date}</h3>
+    // let dltBtn = document.createElement("button")
+    // dltBtn.textContent = "Delete Goal"
+  goalCard.innerHTML = `<h3>My name is ${goal.name}</h3>
+    <h3>My goal is ${goal.goal}</h3>
+    <h3>My start date is ${goal.date}</h3>
+    <button onclick="deleteGoal(${goal.id})">Delete</button>
     `;
-    goalCard.appendChild(dltBtn)
+    // goalCard.appendChild(dltBtn)
+    // formDisplay.appendChild(goalCard)
+    // dltBtn.addEventListener("click", deleteGoal)
+    // dltBtn.addEventListener("click", getDeleteIndex)
+
     formDisplay.appendChild(goalCard)
-    dltBtn.addEventListener("click", deleteGoal)
+
+    function getDeleteIndex(event) {
+        console.log(event.target.parentNode)
+    }
+    
 };
 
-{/* <button onclick="deleteGoal(goal.id)">Delete Goal</button */}
+// function getDeleteIndex(event) {
+//     console.log(event.target.id)
 
-// function showAllGoals() {
-//     axios.get(`${baseURL}/`).then((res) => {
-//         console.log(res)
-//     })
 // }
 
 const displayFortune = (element) => {
@@ -40,6 +49,10 @@ const displayFortune = (element) => {
 function clearDisplay() {
   formDisplay.innerHTML = "";
 }
+
+// const getAllGoals = () => axios.get(`${baseURL}/goals`).then((res) => {
+//     res.
+// }).catch(errCallback)
 
 const getCompliment = () => {
   axios.get(`${baseURL}/compliment/`).then((res) => {
@@ -67,7 +80,7 @@ const addGoal = (event) => {
     date: date.value,
   };
   axios
-    .post(`${baseURL}/goal/`, newGoalObj)
+    .post(`${baseURL}/goals/`, newGoalObj)
     .then((res) => {
       console.log("clicked displayBtn");
       console.log(res)
@@ -95,14 +108,23 @@ const getCuteDogs = () => {
 
 const deleteGoal = (id) =>
   axios
-    .delete(`${baseURL}/delete/${id}`)
-    .then(({ data: goals }) => displayGoals )
+    .delete(`http://localhost:4000/api/goals/${id}`)
+    .then((res) => {
+        clearDisplay()
+        console.log(res.data)
+    })
     .catch((err) => console.log(err));
 
-    ({ data: movies }) => displayMovies(movies)
 
-    const moviesCallback = ({ data: movies }) => displayMovies(movies)
-const errCallback = err => console.log(err.response.data)
+//     const deleteGoal = (id) =>
+//   axios
+//     .delete(`${baseURL}/goals/${id}`)
+//     .then(({ data: goals }) => displayGoals(goals) )
+//     .catch((err) => console.log(err));
+
+
+    
+
 
 //EventListeners
 
@@ -115,9 +137,17 @@ fortuneBtn.addEventListener("click", getFortune);
 goalBtn.addEventListener("click", addGoal);
 
 
+
 function displayGoals(arr) {
     formDisplay.innerHTML = ``
     for (let i = 0; i < arr.length; i++) {
         createGoalsCard(arr[i])
     }
 }
+
+
+
+
+// form.addEventListener('submit', displayHandler)
+
+//getAllGoals()

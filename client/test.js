@@ -1,39 +1,26 @@
-const housesContainer = document.querySelector('#houses-container')
-const form = document.querySelector('form')
-
-const baseURL = `http://localhost:4004/api/houses`
-
-const housesCallback = ({ data: houses }) => displayHouses(houses)
-const errCallback = err => console.log(err)
-
-const getAllHouses = () => axios.get(baseURL).then(housesCallback).catch(errCallback)
-const createHouse = body => axios.post(baseURL, body).then(housesCallback).catch(errCallback)
-const deleteHouse = id => axios.delete(`${baseURL}/${id}`).then(housesCallback).catch(errCallback)
-const updateHouse = (id, type) => axios.put(`${baseURL}/${id}`, {type}).then(housesCallback).catch(errCallback)
-
-function submitHandler(e) {
+function displayHandler(e) {
     e.preventDefault()
 
-    let address = document.querySelector('#address')
-    let price = document.querySelector('#price')
-    let imageURL = document.querySelector('#img')
+    let name = document.querySelector('#name')
+    let price = document.querySelector('#goal')
+    let date = document.querySelector('#date')
 
     let bodyObj = {
-        address: address.value,
-        price: price.value, 
-        imageURL: imageURL.value
+        name: name.value,
+        goal: goal.value, 
+        date: date.value
     }
 
-    createHouse(bodyObj)
+    createGoal(bodyObj)
 
-    address.value = ''
-    price.value = ''
-    imageURL.value = ''
+    name.value = ''
+    goal.value = ''
+    date.value = ''
 }
 
-function createHouseCard(house) {
-    const houseCard = document.createElement('div')
-    houseCard.classList.add('house-card')
+function createGoalCard(goal) {
+    const goalCard = document.createElement('div')
+    //houseCard.classList.add('house-card')
 
     houseCard.innerHTML = `<img alt='house cover image' src=${house.imageURL} class="house-cover-image"/>
     <p class="address">${house.address}</p>
@@ -59,12 +46,3 @@ function displayHouses(arr) {
 form.addEventListener('submit', submitHandler)
 
 getAllHouses()
-
-
-
-deleteHouse: (req, res) => {
-  let { id } = req.params;
-  let houseIndex = houses.findIndex((el) => el.id === +id);
-  houses.splice(houseIndex, 1);
-  res.status(200).send(houses);
-},

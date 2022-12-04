@@ -30,6 +30,10 @@ module.exports = {
 
     },
 
+    
+  getHouses: (req, res) => {
+    res.status(200).send(houses);
+  },
     addGoal: (req, res) => {
     let { goal, name, date } = req.body
 
@@ -45,11 +49,10 @@ module.exports = {
     },
 
     deleteGoal: (req, res) => {
-        let { goalId: id} = req.params;
-        let goalIndex = goal.findIndex
-        ((item) => item.id === +id)
+        let { id } = req.params;
+        let goalIndex = goals.findIndex((element) => element.id === +id)
         goals.splice(goalIndex,1)
-        res.status(200).send(movies);
+        res.status(200).send(goals);
     }
 
     
