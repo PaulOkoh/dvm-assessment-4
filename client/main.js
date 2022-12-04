@@ -1,6 +1,7 @@
 const complimentBtn = document.getElementById("complimentButton");
 const fortuneBtn = document.getElementById("fortuneBtn");
 const goalBtn = document.querySelector("#goalBtn");
+const allGoalsBtn =document.querySelector("#allGoals");
 const yourName = document.querySelector("#name");
 const yourGoal = document.querySelector("#goal");
 const date = document.querySelector("#date");
@@ -31,9 +32,7 @@ const createGoalsCard = (goal) => {
 
     formDisplay.appendChild(goalCard)
 
-    function getDeleteIndex(event) {
-        console.log(event.target.parentNode)
-    }
+    
     
 };
 
@@ -63,6 +62,15 @@ const getFortune = () => {
     displayFortune(data);
   });
 };
+
+const getGoals = (event) => {
+    event.preventDefault()
+    clearDisplay()
+    axios.get(`${baseURL}/goals`).then((res) => {
+        console.log(res.data)
+
+    }).catch(err => console.log(err))
+}
 
 const addGoal = (event) => {
   event.preventDefault();
@@ -106,6 +114,7 @@ const deleteGoal = (id) =>
     .then((res) => {
         clearDisplay()
         console.log(res.data)
+        displayGoals(res.data)
     })
     .catch((err) => console.log(err));
 
@@ -129,6 +138,7 @@ complimentBtn.addEventListener("click", getCompliment);
 fortuneBtn.addEventListener("click", getFortune);
 
 goalBtn.addEventListener("click", addGoal);
+allGoalsBtn.addEventListener("click", getGoals)
 
 
 

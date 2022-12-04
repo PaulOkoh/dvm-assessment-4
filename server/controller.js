@@ -31,8 +31,8 @@ module.exports = {
     },
 
     
-  getHouses: (req, res) => {
-    res.status(200).send(houses);
+  getGoals: (req, res) => {
+    res.status(200).send(goals);
   },
     addGoal: (req, res) => {
     let { goal, name, date } = req.body
