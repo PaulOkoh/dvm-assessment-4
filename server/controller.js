@@ -1,3 +1,6 @@
+const goals = require("./db.json")
+let serialId = 6
+
 module.exports = {
 
     getCompliment: (req, res) => {
@@ -25,7 +28,32 @@ module.exports = {
         res.status(200).send(randomFortune);
 
 
+    },
+
+    addGoal: (req, res) => {
+    let { goal, name, date } = req.body
+
+    let newGoal = {
+        id:serialId,
+        name,
+        goal,
+        date
+    }   
+        goals.push(newGoal)
+        res.status(200).send(goals)
+        serialId++
+    },
+
+    deleteGoal: (req, res) => {
+        let { goalId: id} = req.params;
+        let goalIndex = goal.findIndex
+        ((item) => item.id === +id)
+        goals.splice(goalIndex,1)
+        res.status(200).send(movies);
     }
 
+    
+   
 
 }
+

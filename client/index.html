@@ -1,11 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="styles.css" />
     <title>Back End Assessment</title>
   </head>
   <body class="container">
-    <button id="complimentButton">Get a compliment</button>
-    <button id="fortuneBtn">Get Fortune</button>
+    <section class="formSection">
+      <form action="#">
+        <h3>Vision Board</h3>
+        <p>Write Out Your Goals</p>
+        <p>If you believe it you can do it!</p>
+
+        <br />
+
+        <label for="name">Name</label>
+        <input type="text" id="name" required>
+
+        <label for="goal">Goal</label>
+        <input type="text" id="goal" required>
+
+        <label for="date">Date</label>
+        <input type="date" id="date" required>
+
+        <div class="displayBtn">
+          <button id="goalBtn" type="submit">Display Goals</button>
+          <!-- <button>Display All Goals</button> -->
+        </div>
+      </form>
+      <div class="formDisplay"></div>
+    </section>
+
+    <button class="btnMargin" id="complimentButton">Get a compliment</button>
+    <button class="btnMargin" id="fortuneBtn">Get Fortune</button>
+
+    <div class="displayFortune"></div>
+    <div class ="dogDisplay"></div>
+    <button class="doggy">Get Cute Dog Pics</button>
+
+    
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="main.js"></script>

@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+form {
+  border: 2px solid black;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+}
+
+input {
+  margin: 15px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.goalBtn {
+  margin: 10px;
+}
+
+.displayBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.btnMargin {
+  margin: 15px;
+}
+
+/* .formSection {
+  display: flex;
+} */
+
+.formDisplay {
+  margin-top: 20px;
+}
+
+.dogDisplay {
+  height: 200px;
+  width: 200px;
+}
+
+.doggy {
+  padding: 5px
+}
+
+button {
+  background-color: rgb(124, 121, 223);
+}
