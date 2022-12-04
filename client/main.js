@@ -37,10 +37,6 @@ const createGoalsCard = (goal) => {
     
 };
 
-// function getDeleteIndex(event) {
-//     console.log(event.target.id)
-
-// }
 
 const displayFortune = (element) => {
   fortuneDisplay.innerHTML = `<h2>${element}</h2>`;
@@ -50,9 +46,7 @@ function clearDisplay() {
   formDisplay.innerHTML = "";
 }
 
-// const getAllGoals = () => axios.get(`${baseURL}/goals`).then((res) => {
-//     res.
-// }).catch(errCallback)
+
 
 const getCompliment = () => {
   axios.get(`${baseURL}/compliment/`).then((res) => {
@@ -97,7 +91,7 @@ const addGoal = (event) => {
 };
 
 const getCuteDogs = () => {
-  dogDisplay.innerHTMLimage = "";
+  dogDisplay.innerHTML = "";
   axios.get("https://dog.ceo/api/breeds/image/random").then((res) => {
     let data = res.data.message;
     let image = document.createElement("img");
